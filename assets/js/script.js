@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 checkAnswer();
         }else   {
             let gameType = this.getAttribute("data-type");
-            alert(`You clicked ${gameType}`);
             runGame(gameType);
         }
         });
@@ -30,11 +29,22 @@ document.addEventListener("DOMContentLoaded", function() {
 function runGame(gameType) {
     document.getElementById("answer-box").value = "";
     document.getElementById("answer-box").focus();
+    
+    let num1, num2;
 
-    //  Creates two random numbers between 1 and 25
-   let num1 = Math.floor(Math.random() * 25) +1;
-   let num2 = Math.floor(Math.random() * 25) +1;
+    if (gameType === "division") {
+        // pick divisor
+        num2 = Math.floor(Math.random() * 12) + 1;
 
+        // pick a multiplier so num1 is divisible
+        let multiplier = Math.floor(Math.random() * 12) + 1;
+
+        num1 = num2 * multiplier;  // guaranteed multiple
+    } else {
+        // default randoms for all other game types
+        num1 = Math.floor(Math.random() * 25) + 1;
+        num2 = Math.floor(Math.random() * 25) + 1;
+    }
    if (gameType === "addition") {
     displayAdditionQuestion(num1, num2);
    }else if (gameType === "subtract") {
@@ -120,6 +130,7 @@ function displayMultiplyQuestion(operand1, operand2){
 }
 
 function displayDivisionQuestion(operand1, operand2){
+ 
     document.getElementById("operand1").textContent = operand1;
     document.getElementById("operand2").textContent = operand2;
     document.getElementById("operator").textContent = "/";
