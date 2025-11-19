@@ -70,13 +70,17 @@ function calculateCorrectAnswers(){
         throw `Unimplemented operator ${operator}. Aborting!`;
     }
 }
-
+/**
+ * increments the score counter
+ */
 function incrementScore(){
-    
+    document.getElementById("score").innerText++;
 }
-
+/**
+ * increments the incorrect answer counter
+ */
 function incrementWrongAnswer(){
-
+    document.getElementById("incorrect").innerText++;
 }
 
 function displayAdditionQuestion(operand1, operand2){
